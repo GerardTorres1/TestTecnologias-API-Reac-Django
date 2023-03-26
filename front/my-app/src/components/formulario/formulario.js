@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Salida from "../salida/salida";
 
 const Formulario = () => {
     const [title, setTitle] = useState("");
