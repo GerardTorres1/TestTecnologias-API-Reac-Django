@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Salida from "../salida/salida";
 
 const Formulario = () => {
     const [title, setTitle] = useState("");
@@ -18,6 +19,9 @@ const Formulario = () => {
             .then((response) => response.json())
             .then((data) => console.log(data))
             .catch((error) => console.log(error));
+
+        setTitle("");
+        setContent("");
     };
 
     return (
@@ -52,7 +56,7 @@ const Formulario = () => {
                         onChange={(e) => setContent(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" >
                     Enviar
                 </button>
             </form>
