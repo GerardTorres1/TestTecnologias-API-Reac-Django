@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv  # agrego dotenv para poder usar variables de entorno
+
+load_dotenv()  # cargo las variables de entorno
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,9 +41,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework", # agrego rest_framework
-    "post", # agrego post (una app que cree)
-    'corsheaders', # agrego corsheaders para poder hacer peticiones desde el front
+    "rest_framework",  # agrego rest_framework
+    "post",  # agrego post (una app que cree)
+    'corsheaders',  # agrego corsheaders para poder hacer peticiones desde el front
 ]
 
 MIDDLEWARE = [
@@ -50,7 +54,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'corsheaders.middleware.CorsMiddleware', # agrego corsheaders para poder hacer peticiones desde el front
+    # agrego corsheaders para poder hacer peticiones desde el front
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "mysite.urls"
@@ -79,8 +84,12 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('DB_NAME'),  # agrego el nombre de la base de datos
+        'USER': os.getenv('DB_USER'),  # agrego el usuario de la base de datos
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # agrego la contraseña de la base de datos
+        'HOST': os.getenv('DB_HOST'),  # agrego el host de la base de datos
+        'PORT': os.getenv('DB_PORT'),  # agrego el puerto de la base de datos
     }
 }
 
