@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Formulario = () => {
+const Formulario = ({ onAddPost }) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
@@ -16,11 +16,13 @@ const Formulario = () => {
 
         fetch(url, requestOptions)
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                console.log(data);
+                onAddPost(data);
+                setTitle("");
+                setContent("");
+            })
             .catch((error) => console.log(error));
-
-        setTitle("");
-        setContent("");
     };
 
     return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const Salida = () => {
-    const [data, setData] = useState([]);
+const Salida = ({posts}) => {
+    const [data, setData] = useState(posts);
 
     useEffect(() => {
         const url = "http://localhost:8000/api/post/";
@@ -9,7 +9,7 @@ const Salida = () => {
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.log(error));
-    }, []);
+    }, [posts]);
 
     return (
         <div>
