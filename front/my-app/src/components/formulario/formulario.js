@@ -19,7 +19,6 @@ const Formulario = ({ onAddPost }) => {
             .then((data) => {
                 console.log(data);
                 onAddPost(data);
-                setTitle("");
                 setContent("");
             })
             .catch((error) => console.log(error));
